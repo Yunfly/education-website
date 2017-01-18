@@ -9,7 +9,6 @@ var mysql = require('mysql');
 var multer  = require('multer')
 var upload = multer({ dest: '../public/uploads/' })
 
-
 var admin = require('./routes/admin');
 var index = require('./routes/index');
 
