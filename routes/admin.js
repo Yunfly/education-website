@@ -52,11 +52,11 @@ router.get('/welcome',function(req,res){
 // banner设置
 router.get('/banners',function(req,res){
     if (req.query.act == 'del') {
-        db.query(`SELECT * FROM banner_table`,function(err,banners){
+        db.query(`DELETE  FROM banner_table WHERE ID = ${req.query.id}`,function(err,banners){
             if (err) {
                 res.status(500).send('database error').end()
             } else {
-                res.render('admin/banner-list.ejs',{banners});
+                res.redirect('/admin/banners');
             }
         });
     } else {
