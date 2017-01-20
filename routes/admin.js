@@ -55,8 +55,6 @@ router.get('/banners',function(req,res){
         db.query(`DELETE  FROM banner_table WHERE ID = ${req.query.id}`,function(err,banners){
             if (err) {
                 res.status(500).send('database error').end()
-            } else {
-                res.redirect('/admin/banners');
             }
         });
     } else {
@@ -110,14 +108,7 @@ router.get('/banner-change',function(req,res){
 });
 
 router.post('/banner-change',function(req,res){
-    var title = req.body.title;
-    var href = req.body.href;
-    var description = req.body.description;
-
-    if (!title || !href ||!description) {
-        res.status(400).send('arg error').end();
-    } else {
-        db.query(`UPDATE banner_table title='${title}',description='${title}',href='${href}' WHERE ID = {req.query.id} `,function(err,data){
+        db.query(`UPDATE banner_table SET title='${req.body.title}',description='${req.body.description}',href='${req.body.href}' WHERE ID = ${req.query.id} `,function(err,data){
         if(err){
             console.log(err);
             res.status(500).send('database err').end();
@@ -125,7 +116,7 @@ router.post('/banner-change',function(req,res){
             res.status(200).end();
         }
     });
-    }
+    
 })
 
 
