@@ -87,7 +87,14 @@ router.post('/banner-add',function(req,res){
             console.log(err);
             res.status(500).send('database err').end();
         } else {
-            res.status(200).end();
+            db.query(`SELECT * from banner_table ORDER BY ID DESC LIMIT 1`,function(err,data){
+                if (err) { 
+                    console.log(err)
+                } else {
+                res.send(data);
+                }
+                
+            })
         }
     });
     }

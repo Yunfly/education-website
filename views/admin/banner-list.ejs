@@ -47,7 +47,7 @@
 				<th width="100">操作</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="banner_tody">
 		<% for(var i= 0;i<banners.length;i++){ %>
 			<tr class="text-c" data-id='<%=banners[i].ID %>'>
 				<td><input type="checkbox" value="1" name=""></td>
@@ -85,7 +85,7 @@ $(function(){
 			$(this).removeClass('selected');
 		}
 		else {
-			table.$('tr.selected').removeClass('selected');
+			parent.$('tr.selected').removeClass('selected');
 			$(this).addClass('selected');
 		}
 	});
